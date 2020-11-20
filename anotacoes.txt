@@ -2,10 +2,16 @@
   npm start 
 
 # Firebase
+  * Firestore 
+    /rooms
+      auto-ID
+      name
+  
 
 # Dependencies
   npm i @material-ui/core
   npm i @material-ui/icons
+  npm i firebase
 
 # URL's 
   * Random Avatars 
