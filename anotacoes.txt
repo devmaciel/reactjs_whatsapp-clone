@@ -7,6 +7,11 @@
     /rooms
       auto-ID
       name
+    /rooms/"ID"/messages
+      auto-ID
+      message "string"
+      name "string"
+      timestamp "timestamp"
   
 
 # Dependencies
