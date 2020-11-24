@@ -2,6 +2,7 @@
   npm start 
 
 # Firebase
+  enable google auth
   * Firestore 
     /rooms
       auto-ID
