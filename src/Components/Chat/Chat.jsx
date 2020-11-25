@@ -9,7 +9,9 @@ import {
 import React, { useEffect, useState } from "react";
 import "./Chat.css";
 import { useParams } from "react-router-dom";
+import firebase from "firebase";
 import db from "../../firebase/firebase";
+import { useStateValue } from "../../StateProvider";
 
 function Chat() {
 	const [seed, setSeed] = useState("");
@@ -17,6 +19,7 @@ function Chat() {
 	const { roomId } = useParams();
 	const [roomName, setRoomName] = useState("");
 	const [messages, setMessages] = useState([]);
+	const [{ user }, dispatch] = useStateValue();
 
 	useEffect(() => {
 		if (roomId) {
@@ -40,6 +43,13 @@ function Chat() {
 
 	const sendMessage = (e) => {
 		e.preventDefault();
+
+		db.collection("rooms").doc(roomId).collection("messages").add({
+			message: input,
+			name: user.displayName,
+			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+		});
+
 		setInput("");
 	};
 
@@ -52,7 +62,7 @@ function Chat() {
 
 				<div className="chat__headerInfo">
 					<h3>{roomName}</h3>
-					<p>Last seen at ...</p>
+					<p>last seen at {new Date(messages[messages.length - 1]?.timestamp?.toDate()).toUTCString()}</p>
 				</div>
 
 				<div className="chat__headerRight">
