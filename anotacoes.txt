@@ -13,6 +13,12 @@
       name "string"
       timestamp "timestamp"
   
+  deploy:
+    firebase login
+    firebase init hosting
+      ...build
+    npm run build
+    firebase deploy
 
 # Dependencies
   npm i @material-ui/core
@@ -23,3 +29,8 @@
 # URL's 
   * Random Avatars 
     https://avatars.dicebear.com
+
+# Bugs
+  invalid date if no message
+  "no auth token storage in contextapi" refresh === login again"
+  
